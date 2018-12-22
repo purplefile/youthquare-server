@@ -94,7 +94,9 @@ function post(app){
     app.post('/post/argument/like',(req,res)=>{
         let post_token = req.body.post_token;
         let comment_token = req.body.comment_token;
-        
+
+        console.log(comment_token)
+
         async.waterfall([
             function(cb){
                 Post.find({post_token:post_token},(err,model)=>{
@@ -108,7 +110,7 @@ function post(app){
                 });
             },
             function(cb){
-                Comment.find({comment_token:comment_token , post_token:post_token},(err,model)=>{
+                Comment.find({'comment.comment_token':comment_token},(err,model)=>{
                     if(err) throw err;
                     if(model.length == 0){
                         cb(true , 404 , 'Comment Not Found');
@@ -119,7 +121,7 @@ function post(app){
                 });
             },
             function(like , cb){
-                Comment.update({comment_token:comment_token,post_token:post_token},{$set:{comment:{comment_like:(like + 1)}}},(err,model)=>{
+                Comment.update({'comment.comment_token':comment_token},{$set:{'comment.comment_like':(like + 1)}},(err,model)=>{
                     if(err) throw err;
                     cb(null , 200 , 'update success');
                 });
@@ -134,7 +136,7 @@ function post(app){
         });
     });
 
-    app.post('/post/argument/dislikes',(req,res)=>{
+    app.post('/post/argument/dislike',(req,res)=>{
         let post_token = req.body.post_token;
         let comment_token = req.body.comment_token;
         
@@ -151,7 +153,7 @@ function post(app){
                 });
             },
             function(cb){
-                Comment.find({comment_token:comment_token , post_token:post_token},(err,model)=>{
+                Comment.find({'comment.comment_token':comment_token},(err,model)=>{
                     if(err) throw err;
                     if(model.length == 0){
                         cb(true , 404 , 'Comment Not Found');
@@ -162,7 +164,7 @@ function post(app){
                 });
             },
             function(dislike , cb){
-                Comment.update({comment_token:comment_token,post_token:post_token},{$set:{comment:{comment_dislike:(dislike + 1)}}},(err,model)=>{
+                Comment.update({'comment.comment_token':comment_token},{$set:{'comment.comment_dislike':(dislike + 1)}},(err,model)=>{
                     if(err) throw err;
                     cb(null , 200 , 'update success');
                 });
@@ -186,7 +188,7 @@ function post(app){
 
         async.waterfall([
             function(cb){
-                Comment.find({comment:{comment_token:comment_token}},(err,model)=>{
+                Comment.find({'comment.comment_token':comment_token},(err,model)=>{
                     if(err) throw err;
                     if(model.length == 0){
                         cb(true , 404 , 'Comment Not Found');
@@ -209,13 +211,14 @@ function post(app){
                     }
                 });
             },
-            function(comment , user , cb){
+            function(user , comment , cb){
+                
                 let reply = comment.comment.reply[comment.comment.reply.length] = {
                     profile_img:user.profile_img,
                     name:user.name,
                     reply_comment:reply_comment
                 }
-                Comment.update({comment:{comment_token:comment_token}},{$set:{comment:{reply:reply}}},(err,model)=>{
+                Comment.update({'comment.comment_token':comment_token},{$set:{'comment.reply':reply}},(err,model)=>{
                     if(err) throw err;
                     cb(null)
                 });
@@ -240,7 +243,7 @@ function post(app){
     app.get("/post/get/reply/:comment_token",(req,res)=>{
         let comment_token = req.params.comment_token;
 
-        Comment.find({comment:comment_token},(err,model)=>{
+        Comment.find({'comment.comment_token':comment_token},(err,model)=>{
             if(err) throw err;
             res.send({
                 status:200,
