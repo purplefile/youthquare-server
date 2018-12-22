@@ -12,3 +12,5 @@
 # Schema
 
 [/Schema](/docs/schema.md)
+
+> Schema 정리
