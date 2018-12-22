@@ -50,7 +50,7 @@ function parse(){
                 const img = await page.evaluate(() => document  .querySelector('meta[name="twitter:image"]').content);
 
 
-                let getSaveBool = await save(title,category,content_result.trim(),img);
+                let getSaveBool = await save(title,category,content_result.trim(),img , url);
                 console.log(getSaveBool)
                 if(getSaveBool == true){
                     console.log(i + ' : Save Success');
@@ -64,7 +64,7 @@ function parse(){
     });
 }
 
-function save(title , category , content , img){
+function save(title , category , content , img , url){
     Post.find({title:title , category:category , content:content , img:img},(err,model)=>{
         if(err) throw err;
         if(model.length == 0){
@@ -73,7 +73,8 @@ function save(title , category , content , img){
                 title:title,
                 img:img,
                 content:content,
-                category:category
+                category:category,
+                url:url
             });
 
             savePost.save((err,model)=>{

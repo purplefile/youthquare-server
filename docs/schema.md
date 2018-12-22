@@ -5,6 +5,7 @@
         age  : Number, 
         profile_img : String,
         post_list:Array,
+        url : String ,
     });
 
     let Post = new mongoose.Schema({
