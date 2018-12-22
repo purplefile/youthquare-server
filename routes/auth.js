@@ -31,7 +31,10 @@ console.log(model, model.length, model.length == 0);
         let email = req.body.email;
         let name = req.body.name;
         let age = req.body.age;
+        let profile_img = req.body.profile_img;
         let post_array = new Array();
+
+        console.log(uid);
 
         User.find({uid:uid},(err,model)=>{
             if(err) throw err;
@@ -41,6 +44,7 @@ console.log(model, model.length, model.length == 0);
                     email:email,
                     post_list:post_array,
                     name:name,
+                    profile_img:profile_img,
                     age:age,
                 });
         
@@ -51,7 +55,8 @@ console.log(model, model.length, model.length == 0);
                             uid:uid,
                             email:email,
                             name:name,
-                            age:age
+                            age:age,
+                            profile_img:profile_img
                         }
                     });
                 });

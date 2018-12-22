@@ -22,6 +22,8 @@
 
 > uid : String
 
+> profile_img : String
+
 > email : String
 
 > name : String
@@ -34,13 +36,15 @@
 
 > data:{
 
->   uid:uid,
+>   uid:String,
 
->   email:email,
+>   email:String,
 
->   name:name,
+>   name:String,
 
->   age:age
+>   age:Number ,
+
+>   profile_img : Stri g
 
 >}
 
