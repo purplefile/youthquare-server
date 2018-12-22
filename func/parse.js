@@ -49,7 +49,7 @@ function parse(){
           
                 const img = await page.evaluate(() => document  .querySelector('meta[name="twitter:image"]').content);
 
-
+                console.log(url);
                 let getSaveBool = await save(title,category,content_result.trim(),img , url);
                 console.log(getSaveBool)
                 if(getSaveBool == true){
