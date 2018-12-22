@@ -13,7 +13,8 @@ let User = new mongoose.Schema({
     email : String,
     name : String,
     age  : Number, 
-    profile_img : String
+    profile_img : String,
+    post_list:Array,
 });
 
 let Post = new mongoose.Schema({

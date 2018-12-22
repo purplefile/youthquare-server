@@ -181,6 +181,8 @@ function post(app){
         let comment_token = req.body.comment_token;
         let uid = req.body.uid;
         let reply_comment = req.body.reply_comment;
+        let post_token;
+        let user_post_array;
 
         async.waterfall([
             function(cb){
@@ -190,6 +192,7 @@ function post(app){
                         cb(true , 404 , 'Comment Not Found');
                     }
                     else{
+                        post_token = model[0].post_token
                         cb(null , model[0]);
                     }
                 });
@@ -201,6 +204,7 @@ function post(app){
                         cb(true , 404 , "User Not Found");
                     }
                     else{
+                        user_post_array = model[0].post_list
                         cb(null , model[0] , comment);
                     }
                 });
@@ -213,7 +217,14 @@ function post(app){
                 }
                 Comment.update({comment:{comment_token:comment_token}},{$set:{comment:{reply:reply}}},(err,model)=>{
                     if(err) throw err;
-                    cb(null , 200 , "Save Success");
+                    cb(null)
+                });
+            },
+            function(cb){
+                user_post_array[user_post_array.length] = post_token;
+                User.update({uid:uid},{$set:{post_list:user_post_array}},(err,model)=>{
+                    if(err) throw err;
+                    cb(null , 200 ,'Save Success')
                 });
             }
         ],function(cb , status , message){
