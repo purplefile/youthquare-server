@@ -8,8 +8,7 @@ function post(app){
     app.get('/post',(req,res)=>{
         Post.find({},(err,model)=>{
             if(err) throw err;
-            res.send({
-                status:200,
+            res.send(200,{
                 data:model
             });
         });
@@ -70,8 +69,7 @@ function post(app){
              }
          ],function(cb , status , message){
             if(cb == true || cb == null){
-                res.send({
-                    status:status,
+                res.send(status,{
                     message:message
                 });
             }
@@ -84,8 +82,7 @@ function post(app){
 
         Comment.find({post_token:post_token},(err,model)=>{
             if(err) throw err;
-            res.send({
-                status:200,
+            res.send(status,{
                 data:model
             })
         });
@@ -128,8 +125,7 @@ function post(app){
             }
         ],function(cb , status , message){
             if(cb == null || cb == true){
-                res.send({
-                    status:status,
+                res.send(status,{
                     message:message
                 });
             }
@@ -171,8 +167,7 @@ function post(app){
             }
         ],function(cb , status , message){
             if(cb == null || cb == true){
-                res.send({
-                    status:status,
+                res.send(status,{
                     message:message
                 });
             }
@@ -232,8 +227,7 @@ function post(app){
             }
         ],function(cb , status , message){
             if(cb == true || cb == null){
-                res.send({
-                    status:status,
+                res.send(status,{
                     message:message
                 })
             }
@@ -245,8 +239,7 @@ function post(app){
 
         Comment.find({'comment.comment_token':comment_token},(err,model)=>{
             if(err) throw err;
-            res.send({
-                status:200,
+            res.send(200,{
                 data:model
             });
         });
