@@ -28,7 +28,7 @@
 
 > name : String
 
-> age : String
+> age : Number
 
 ## Response : Success
 

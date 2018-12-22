@@ -8,3 +8,7 @@
 [/post](/docs/post.md)
 
 > Post에 관련된 쿼리입니다
+
+# Schema
+
+[/Schema](/docs/schema.md)
