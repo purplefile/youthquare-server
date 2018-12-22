@@ -21,7 +21,7 @@ let Post = new mongoose.Schema({
     img : String ,
     title : String,
     category : String,
-    content : String,
+    content : Array,
     post_token : String,
     url : String ,
 });
