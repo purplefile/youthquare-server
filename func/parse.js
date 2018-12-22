@@ -17,7 +17,7 @@ function parse(){
 
     request(options , async function (err ,response , body){
         let data = body.split('<div class="newsnow_tx_inner">');
-        const browser = await puppeteer.launch();
+        const browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox']});
         const page = await browser.newPage();
         for(let i = 1; i<data.length; i ++){
             let url = data[i].split('</div>')[0].split('href="')[1].split('"')[0].replace(/\amp;/g,'');

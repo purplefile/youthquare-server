@@ -3,12 +3,20 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var fs = require('fs');
+var https = require('https');
+var cors = require('cors');
 
 var app = express();
-
+let option = {
+	key:fs.readFileSync('/etc/apache2/ssl/soylatte.kr_20180207JJEU.key.pem'),
+	cert:fs.readFileSync('/etc/apache2/ssl/soylatte.kr_20180207JJEU.crt.pem')
+}
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
+
+app.use(cors());
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -34,5 +42,7 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+https.createServer(option , app).listen(3000);
 
 module.exports = app;

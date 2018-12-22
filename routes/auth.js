@@ -9,9 +9,10 @@ function auth(app){
     app.post('/auth/login',(req,res)=>{
         let uid = req.body.uid;
         let email = req.body.email;
-
+	console.log(uid);
         User.find({uid:uid},(err,model)=>{
             if(err) throw err;
+console.log(model, model.length, model.length == 0);
             if(model.length == 0){
                 res.send({
                     status:404,
