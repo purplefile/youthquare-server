@@ -1,10 +1,10 @@
 # 17 - Appjam
 
 # Query
-[/auth](/Docs/auth.md)
+[/auth](/docs/auth.md)
 
 > Auth에 관련된 쿼리입니다
 
-[/post](/Docs/post.md)
+[/post](/docs/post.md)
 
 > Post에 관련된 쿼리입니다
