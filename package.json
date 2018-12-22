@@ -6,11 +6,20 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "async": "^2.6.1",
+    "colors": "^1.3.3",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "express": "~4.16.0",
+    "headless-chrome-crawler": "^1.8.0",
     "http-errors": "~1.6.2",
     "jade": "~1.11.0",
-    "morgan": "~1.9.0"
+    "mongoose": "^5.4.0",
+    "morgan": "~1.9.0",
+    "puppeteer": "^1.11.0",
+    "randomstring": "^1.1.5",
+    "request": "^2.88.0",
+    "textrank": "^1.0.5",
+    "textrank-node": "^0.1.9"
   }
 }
