@@ -33,7 +33,7 @@ let Comment = new mongoose.Schema({
         comment_user_name:String,
         comment_date:String,
         comment_user_profile:String,
-        comment_content:String,
+        comment_content:Array,
         comment_like : Number,
         comment_dislike : Number,
         comment_token : String,
