@@ -15,7 +15,6 @@ let User = new mongoose.Schema({
     age  : Number, 
     profile_img : String,
     post_list:Array,
-    url : String ,
 });
 
 let Post = new mongoose.Schema({
@@ -24,6 +23,7 @@ let Post = new mongoose.Schema({
     category : String,
     content : String,
     post_token : String,
+    url : String ,
 });
 
 let Comment = new mongoose.Schema({
