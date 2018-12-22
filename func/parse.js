@@ -68,6 +68,7 @@ function save(title , category , content , img , url){
     Post.find({title:title , category:category , content:content , img:img},(err,model)=>{
         if(err) throw err;
         if(model.length == 0){
+            console.log(url);
             let savePost = new Post({
                 post_token:random_string.generate(),
                 title:title,
