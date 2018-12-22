@@ -82,7 +82,7 @@ function post(app){
 
         Comment.find({post_token:post_token},(err,model)=>{
             if(err) throw err;
-            res.send(status,{
+            res.send(200,{
                 data:model
             })
         });
