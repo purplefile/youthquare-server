@@ -14,14 +14,12 @@ function auth(app){
             if(err) throw err;
 console.log(model, model.length, model.length == 0);
             if(model.length == 0){
-                res.send({
-                    status:404,
+                res.send(404,{
                     message:'User Not Found'
                 })
             }   
             else{
-                res.send({
-                    status:200,
+                res.send(200,{
                     data:model[0]
                 })
             }
@@ -48,8 +46,7 @@ console.log(model, model.length, model.length == 0);
         
                 saveUser.save((err,model)=>{
                     if(err) throw err;
-                    res.send({
-                        status:200,
+                    res.send(200,{
                         data:{
                             uid:uid,
                             email:email,
@@ -60,8 +57,7 @@ console.log(model, model.length, model.length == 0);
                 });
             }
             else{
-                res.send({
-                    status:403,
+                res.send(403,{
                     message:"Already Exist"
                 })
             }
